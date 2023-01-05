@@ -4,10 +4,11 @@ import Links from './components/Links';
 
 function App() {
   return (
-    <>
-      <LinkForm />
+    <div className='container p-4'>
+      <div className='row'>
       <Links />
-    </>
+      </div>
+    </div>
   );
 }
 
