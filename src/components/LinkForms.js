@@ -24,6 +24,7 @@ const LinkForm = (props) => {
 const handeleSubmi = (e) => {
     e.preventDefault();
     props.addOrEditLink(values);
+    setValues({...inicialStatateValues})
 }
 
     return (
@@ -32,18 +33,18 @@ const handeleSubmi = (e) => {
                 <div className="input-group-text bg-light">
                     <i className="material-icons">insert_link</i>
                 </div>
-                <input type="text" className="form-control" placeholder="https://someurl.com" name="url"  onChange={handleInputtChange}/>
+                <input type="text" className="form-control" placeholder="https://someurl.com" name="url"  onChange={handleInputtChange } value={values.url}/>
             </div>
 
             <div className="form-group input-group p-2">
                 <div className="input-group-text bg-light">
                     <i className="material-icons">create</i>
                 </div>
-                <input type="text" className="form-control" name="name" placeholder="Nombre del sitio Web" onChange={handleInputtChange}/>
+                <input type="text" className="form-control" name="name" placeholder="Nombre del sitio Web" onChange={handleInputtChange} value={values.name}/>
             </div>
 
             <div className="form-group p-2">
-                <textarea name="description" rows="3" className="form-control" placeholder="Escribe una descripcion" onChange={handleInputtChange}></textarea>
+                <textarea name="description" rows="3" className="form-control" placeholder="Escribe una descripcion" onChange={handleInputtChange} value={values.description}></textarea>
             </div>
 
             <div className="col text-center">
