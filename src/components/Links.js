@@ -2,15 +2,20 @@
 import React, { useEffect, useState } from "react";
 import LinkForm from "./LinkForms";
 import swal from "sweetalert";
+import {toast, Toast}  from "react-toastify";
+
 
 import { db } from '../firebase'
+import { type } from "@testing-library/user-event/dist/type";
 const Links = () => {
 
     const [links, setLinks] = useState([])
 
     const addOrEditLink = async (linkObject) => {
         await db.collection('links').doc().set(linkObject);
-        console.log('nueva tarea agregada')
+        toast('Nueva publicacion agregada',{
+            type: 'success'
+        })
     }
 
     const onDeliteLink = async (id) => {
@@ -21,6 +26,10 @@ const Links = () => {
             if(respuesta){
              db.collection('links').doc(id).delete();
                 console.log('eliminada')
+                swal({
+                    text:"Se ha borrado con exito",
+                    icon: "success"
+                })
             }
         })
     }
