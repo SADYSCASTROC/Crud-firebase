@@ -1,6 +1,7 @@
 //Encargado de listar todos los enlaces
 import React, { useEffect, useState } from "react";
 import LinkForm from "./LinkForms";
+import swal from "sweetalert";
 
 import { db } from '../firebase'
 const Links = () => {
@@ -13,11 +14,17 @@ const Links = () => {
     }
 
     const onDeliteLink = async (id) => {
-        if (window.alert("¿Esta seguro de querer eliminar?")){
-          await  db.collection('links').doc(id).delete();
-          console.log('eliminada')
-        }
+        (swal({
+            title: "Esta seguro que desea eliminar el archivo",
+            buttons: ["Cancelar", "Elininar"]
+        })).then(respuesta => {
+            if(respuesta){
+             db.collection('links').doc(id).delete();
+                console.log('eliminada')
+            }
+        })
     }
+
 
     const getLinks = async () => {
         db.collection('links').onSnapshot((querySnapshot) => {
